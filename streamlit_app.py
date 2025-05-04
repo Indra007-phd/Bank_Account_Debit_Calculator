@@ -9,7 +9,16 @@ st.title("Bank Statement Debit + Withdrawals Calculator (with PDF Password Suppo
 uploaded_file = st.file_uploader("Upload your bank statement PDF", type=["pdf"])
 
 # Password input field
-password = st.text_input("Enter PDF password (if locked)", type="password")
+password = st.text_input("Enter PDF password (if locked)", type="password").strip()
+try:
+    with pdfplumber.open(uploaded_file, password=password if password else None) as pdf:
+        all_tables = []
+        for page in pdf.pages:
+            table = page.extract_table()
+            if table:
+                all_tables.append(table)
+except Exception as e:
+    st.error(f"Could not open PDF. Check if the password is correct or if the file is supported. Error: {e}")
 
 if uploaded_file is not None:
     try:
