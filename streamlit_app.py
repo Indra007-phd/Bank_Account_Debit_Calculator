@@ -44,9 +44,11 @@ if uploaded_file is not None:
             # Check which debit-type columns exist
             if 'Debit' in combined_df.columns:
                 debit_column = 'Debit'
+                combined_df[debit_column] = combined_df[debit_column].str.replace(',', '', regex=False)
                 combined_df[debit_column] = pd.to_numeric(combined_df[debit_column], errors='coerce')
             if 'Withdrawals' in combined_df.columns:
                 withdrawals_column = 'Withdrawals'
+                combined_df[withdrawals_column] = combined_df[withdrawals_column].str.replace(',', '', regex=False)
                 combined_df[withdrawals_column] = pd.to_numeric(combined_df[withdrawals_column], errors='coerce')
             
             # Make sure at least one is present
