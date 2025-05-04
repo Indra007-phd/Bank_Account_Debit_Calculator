@@ -73,4 +73,4 @@ if uploaded_file is not None:
             st.error("No tables found in the uploaded PDF.")
     
     except Exception as e:
-        st.error(f"Error processing PDF: {e}")
+        st.error(f"Error processing PDF or Password might be wrong {e}")
