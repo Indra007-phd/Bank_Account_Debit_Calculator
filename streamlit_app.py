@@ -5,8 +5,6 @@ import pandas as pd
 # Streamlit Web App Title
 st.title("Bank Statement Debit Calculator (with PDF Password Support)")
 
-
-
 # Password input field
 password = st.text_input("Enter PDF password (if locked)", type="password").strip()
 try:
