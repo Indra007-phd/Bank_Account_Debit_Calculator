@@ -3,10 +3,9 @@ import pdfplumber
 import pandas as pd
 
 # Streamlit Web App Title
-st.title("Bank Statement Debit + Withdrawals Calculator (with PDF Password Support)")
+st.title("Bank Statement Debit Calculator (with PDF Password Support)")
 
-# File uploader for PDF
-uploaded_file = st.file_uploader("Upload your bank statement PDF", type=["pdf"])
+
 
 # Password input field
 password = st.text_input("Enter PDF password (if locked)", type="password").strip()
@@ -19,6 +18,9 @@ try:
                 all_tables.append(table)
 except Exception as e:
     st.error(f"Could not open PDF. Check if the password is correct or if the file is supported. Error: {e}")
+    
+# File uploader for PDF
+uploaded_file = st.file_uploader("Upload your bank statement PDF", type=["pdf"])
 
 if uploaded_file is not None:
     try:
